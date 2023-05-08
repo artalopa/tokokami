@@ -17,6 +17,17 @@ class Produk extends Model
         'id_kategori',
     ];
 
+    public static function createNewProduk($nama_produk, $deskripsi, $harga, $gambar, $id_kategori)
+    {
+        return self::create([
+            'nama_produk' => $nama_produk,
+            'deskripsi' => $deskripsi,
+            'harga' => $harga,
+            'gambar' => $gambar,
+            'id_kategori' => $id_kategori,
+        ]);
+    }
+
     public function kategoris()
     {
         return $this->belongsTo(Kategori::class);

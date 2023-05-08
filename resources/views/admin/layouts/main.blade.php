@@ -3,7 +3,7 @@
 
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Admin Portofolio | {{ $title }}</title>
+	<title>TokoKami | {{ $title }}</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="/admin_assets/img/icon.ico" type="image/x-icon" />
 
@@ -140,17 +140,22 @@
 							</span>
 							<h4 class="text-section">Components</h4>
 						</li>
-						<li class="nav-item {{ ($title == 'Dashboard') ? 'active' : '' }}">
+						<li class="nav-item">
 							<a href="/admin">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="/admin/produk">
+								<i class="fas fa-shopping-bag"></i>
+								<p>Produk</p>
+							</a>
 						</li>
-						<li class="nav-item {{ ($title == 'Blog') ? 'active' : '' }}">
-							<a href="/admin/blog">
-								<i class="fas fa-home"></i>
-								<p>Blog</p>
+						<li class="nav-item">
+							<a href="/admin/kategori">
+								<i class="fas fa-tags"></i>
+								<p>Kategori</p>
 							</a>
 						</li>
 						<li class="nav-section">
@@ -159,7 +164,7 @@
 							</span>
 							<h4 class="text-section">Store</h4>
 						</li>
-						<li class="nav-item {{ ($title == 'Blog') ? 'active' : '' }}">
+						<li class="nav-item">
 							<a href="/">
 								<i class="fas fa-store-alt"></i>
 								<p>TokoKami</p>

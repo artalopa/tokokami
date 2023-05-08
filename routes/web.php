@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\KategoriController;
 
 Route::get('/', function () {
     return view('index', [
@@ -14,8 +16,12 @@ Route::get('/admin', function () {
     ]);
 });
 
-Route::get('/admin/blog', function () {
-    return view('admin.blog', [
-        'title' => 'Tokokami - Blog'
-    ]);
-});
+Route::get('/admin/produk', [ProdukController::class, 'index']);
+Route::post('/admin/produk/store', [ProdukController::class, 'store']);
+Route::post('/admin/produk/update', [ProdukController::class, 'update']);
+Route::post('/admin/produk/delete', [ProdukController::class, 'delete']);
+
+Route::get('/admin/kategori', [KategoriController::class, 'index']);
+Route::post('/admin/kategori/store', [KategoriController::class, 'store']);
+Route::post('/admin/kategori/update', [KategoriController::class, 'update']);
+Route::post('/admin/kategori/delete', [KategoriController::class, 'delete']);

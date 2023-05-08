@@ -18,8 +18,8 @@ class CreateProduksTable extends Migration
             $table->string('nama_produk');
             $table->text('deskripsi');
             $table->integer('harga');
-            $table->string('gambar');
-            $table->unsignedBigInteger('kategori_id')->unique();
+            $table->string('gambar')->nullable();
+            $table->unsignedBigInteger('kategori_id');
             $table->foreign('kategori_id')->references('id')->on('kategoris');
             // $table->foreignId('kategori_id')->constrained();
             $table->timestamps();
