@@ -36,7 +36,7 @@
                                 <div class="modal-body">
                                     <p class="small">Tambah kategori baru ke etalase toko</p>
                                     <div class="row">
-                                        <div class="col-md-6 pr-0">
+                                        <div class="col-md-6">
                                             <div class="form-group form-group-default">
                                                 <label>Nama kategori</label>
                                                 <input id="nama_kategori" name="nama_kategori" type="text" class="form-control" placeholder="masukkan nama kategori" required>
@@ -117,7 +117,7 @@
                                                         <p class="small">Ubah kategori yang telah terdaftar</p>
                                                         <input type="number" name="id" id="id" value="{{ $kategori->id }}" style="display: none;">
                                                         <div class="row">
-                                                            <div class="col-md-6 pr-0">
+                                                            <div class="col-md-6">
                                                                 <div class="form-group form-group-default">
                                                                     <label>Nama kategori</label>
                                                                     <input id="nama_kategori" name="nama_kategori" type="text" class="form-control" placeholder="masukkan nama kategori" value="{{ $kategori->nama_kategori }}" required>

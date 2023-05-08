@@ -40,12 +40,18 @@ class ProdukController extends Controller
 
     public function update(Request $request)
     {
+      if($request->file('gambar')) {
+        $fileGambar = $request->file('gambar')->store('uploads');
+        DB::table('produks')->where('id', $request->id)->update([
+            'gambar' => $fileGambar,
+        ]);
+      }
+      
         // update data tabel produks
         DB::table('produks')->where('id', $request->id)->update([
             'nama_produk' => $request->nama_produk,
             'deskripsi' => $request->deskripsi,
             'harga' => $request->harga,
-            'gambar' => $request->gambar,
             'kategori_id' => $request->kategori_id,
         ]);
 

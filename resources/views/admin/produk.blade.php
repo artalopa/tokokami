@@ -42,7 +42,7 @@
                                                 <input id="nama_produk" name="nama_produk" type="text" class="form-control" placeholder="masukkan nama produk" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 pr-0">
+                                        <div class="col-md-6">
                                             <div class="form-group form-group-default">
                                                 <label>Deskripsi</label>
                                                 <input id="deskripsi" name="deskripsi" type="text" class="form-control" placeholder="masukkan deskripsi singkat" required>
@@ -54,7 +54,7 @@
                                                 <input id="harga" name="harga" type="number" class="form-control" placeholder="masukkan harga produk" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 pr-0">
+                                        <div class="col-md-6">
                                             <div class="form-group form-group-default">
                                                 <label>Kategori</label>
                                                 <select class="custom-select my-1 mr-sm-2" id="kategori_id" name="kategori_id" required>
@@ -68,7 +68,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-group-default">
                                                 <label>Gambar</label>
-                                                <input id="gambar" name="gambar" type="file" class="form-control">
+                                                <input id="gambar" name="gambar" type="file" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@
                                 <th>Deskripsi</th>
                                 <th>Kategori</th>
                                 <th>Harga</th>
-                                <th style="width: 10%">Action</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -108,7 +108,7 @@
                         <tbody>
                             @foreach($dataProduk as $produk)
                             <tr>
-                                <td><img src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->gambar }}" style="width: 200px"></td>
+                                <td><img src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->gambar }}" style="width: 100px;border-radius: 10px" class="my-2"></td>
                                 <td>{{ $produk->nama_produk }}</td>
                                 <td>{{ $produk->deskripsi }}</td>
                                 <td>{{ $produk->nama_kategori }}</td>
@@ -140,7 +140,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="/admin/produk/update" method="post">
+                                                <form action="/admin/produk/update" method="post" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="modal-body">
                                                         <p class="small">Ubah produk yang telah terdaftar</p>
@@ -152,7 +152,7 @@
                                                                     <input id="nama_produk" name="nama_produk" type="text" class="form-control" placeholder="masukkan nama produk" value="{{ $produk->nama_produk }}" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6 pr-0">
+                                                            <div class="col-md-6">
                                                                 <div class="form-group form-group-default">
                                                                     <label>Deskripsi</label>
                                                                     <input id="deskripsi" name="deskripsi" type="text" class="form-control" placeholder="masukkan deskripsi singkat" value="{{ $produk->deskripsi }}" required>
@@ -164,7 +164,7 @@
                                                                     <input id="harga" name="harga" type="number" class="form-control" placeholder="masukkan harga produk" value="{{ $produk->harga }}" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6 pr-0">
+                                                            <div class="col-md-6">
                                                                 <div class="form-group form-group-default">
                                                                     <label>Kategori</label>
                                                                     <select class="custom-select my-1 mr-sm-2" id="kategori_id" name="kategori_id" required>
@@ -182,6 +182,13 @@
                                                                 <div class="form-group form-group-default">
                                                                     <label>Gambar</label>
                                                                     <input id="gambar" name="gambar" type="file" class="form-control" placeholder="masukkan gambar produk" value="{{ $produk->gambar }}">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-md-12">
+                                                                <div class="form-group form-group-default">
+                                                                    <label>Gambar saat ini</label>
+                                                                    <img src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->gambar }}" style="width: 100px;border-radius: 10px" class="my-2">
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -70,7 +70,7 @@
 										<div class="user-box">
 											<div class="avatar-lg"><img src="/admin_assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
 											<div class="u-text">
-												<h4>Ahsani</h4>
+												<h4>Admin</h4>
 												<p class="text-muted">hello@example.com</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
 											</div>
 										</div>
@@ -105,7 +105,7 @@
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									Ahsani
+									Admin
 									<span class="user-level">Administrator</span>
 									<span class="caret"></span>
 								</span>
@@ -189,7 +189,7 @@
 
 					</nav>
 					<div class="copyright ml-auto">
-						2023, Muhammad Ahsani Nur Taqwimi</a>
+						2023, Ahsani, Ryan, Sajid</a>
 					</div>
 				</div>
 			</footer>
