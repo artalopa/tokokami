@@ -62,7 +62,7 @@
                 <div class="container-fluid">
                     <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                         <li class="nav-item dropdown hidden-caret">
-                            <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
+                            {{-- <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
                                 aria-expanded="false">
                                 <div class="avatar-sm">
                                     <img src="/admin_assets/img/profile.jpg" alt="..."
@@ -93,7 +93,17 @@
                                         <a class="dropdown-item" href="#">Logout</a>
                                     </li>
                                 </div>
-                            </ul>
+                            </ul> --}}
+
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <a href="route('logout')" class="text-white"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </a>
+                            </form>
+
                         </li>
                     </ul>
                 </div>
@@ -113,7 +123,7 @@
                             <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                                 <span>
                                     Admin
-                                    <span class="user-level">Administrator</span>
+                                    <span class="user-level">{{ Auth::user()->name }}</span>
                                     <span class="caret"></span>
                                 </span>
                             </a>
@@ -348,7 +358,7 @@
                         var column = this;
                         var select = $(
                                 '<select class="form-control"><option value=""></option></select>'
-                                )
+                            )
                             .appendTo($(column.footer()).empty())
                             .on('change', function() {
                                 var val = $.fn.dataTable.util.escapeRegex(
