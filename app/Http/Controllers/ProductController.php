@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -93,7 +94,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $prod, $product)
     {
         if ($request->file('image')) {
             $request->validate([
@@ -102,12 +103,19 @@ class ProductController extends Controller
 
             $imageName = time() . '.' . $request->image->extension();
 
+            // simpan gambar baru
             $request->image->move(public_path('storage/uploads'), $imageName);
+
+            // hapus gambar llama
+            $oldImageName = $prod->getProduct($product)->image;
+            if (Storage::disk('public')->exists('uploads/' . $oldImageName)) {
+                Storage::disk('public')->delete('uploads/' . $oldImageName);
+            }
         } else {
             $imageName = $request->currentImage;
         }
 
-        $product->updateProduct($request->all(), $imageName);
+        $prod->updateProduct($request->all(), $imageName);
 
         return redirect(route('products.index'));
     }
@@ -120,7 +128,15 @@ class ProductController extends Controller
      */
     public function destroy($product)
     {
+        $imageName = $this->product->getProduct($product)->image;
+        // dd(Storage::disk('public')->delete('uploads/' . $imageName));
+
         $this->product->deleteProduct($product);
+
+        if (Storage::disk('public')->exists('uploads/' . $imageName)) {
+            Storage::disk('public')->delete('uploads/' . $imageName);
+        }
+
         return redirect(route('products.index'));
     }
 }

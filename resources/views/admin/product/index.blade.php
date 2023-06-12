@@ -62,7 +62,7 @@
                                                     <label>Kategori</label>
                                                     <select class="custom-select my-1 mr-sm-2" id="category_id"
                                                         name="category_id" required>
-                                                        <option selected disabled>Pilih kategori...</option>
+                                                        <option selected disabled value=''>Pilih kategori...</option>
                                                         @foreach ($categories as $category)
                                                             <option value="{{ $category->id }}">
                                                                 {{ $category->name }}</option>
