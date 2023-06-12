@@ -60,14 +60,12 @@
                         <table id="add-row" class="display table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>id</th>
                                     <th>Nama kategori</th>
                                     <th style="width: 10%">Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>id</th>
                                     <th>Nama kategori</th>
                                     <th>Action</th>
                                 </tr>
@@ -75,7 +73,6 @@
                             <tbody>
                                 @foreach ($categories as $category)
                                     <tr>
-                                        <td>{{ $category->id }}</td>
                                         <td>{{ $category->name }}</td>
                                         <td>
                                             <div class="form-button-action">

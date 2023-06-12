@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    protected $product, $category;
+
+    public function __construct(Product $product, Category $category)
+    {
+        $this->product = $product;
+        $this->category = $category;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'Produk';
+        $products = $this->product->getAllProduct();
+        $categories = $this->category->getAllCategory();
+        return view('admin.product.index', compact(['products', 'categories', 'title']));
     }
 
     /**
@@ -35,7 +47,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->file('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $imageName = time() . '.' . $request->image->extension();
+
+            $request->image->move(public_path('storage/uploads'), $imageName);
+        } else {
+            $imageName = null;
+        }
+
+        $this->product->createProduct($request->all(), $imageName);
+
+        return redirect(route('products.index'));
     }
 
     /**
@@ -69,7 +95,21 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        if ($request->file('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $imageName = time() . '.' . $request->image->extension();
+
+            $request->image->move(public_path('storage/uploads'), $imageName);
+        } else {
+            $imageName = $request->currentImage;
+        }
+
+        $product->updateProduct($request->all(), $imageName);
+
+        return redirect(route('products.index'));
     }
 
     /**
@@ -78,8 +118,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($product)
     {
-        //
+        $this->product->deleteProduct($product);
+        return redirect(route('products.index'));
     }
 }
